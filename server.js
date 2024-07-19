@@ -44,17 +44,24 @@ io.on("connection", (socket) => {
     socket.join(id);
   });
 
-  socket.on("message", (messagecontent, currentRoom) => {
-    console.log(messagecontent);
-    console.log(currentRoom);
-    socket.to(currentRoom).emit("message", messagecontent);
-  });
+    socket.on("message", (messagecontent, currentRoom) => {
+     ;
+      console.log(currentRoom)
+      socket.to(currentRoom).emit('message', messagecontent)
+      
+      
+    });
 
-  socket.on("leave", (id, user) => {
-    socket.leave(id);
-    console.log("left", id);
-  });
-});
+
+    socket.on('leave', (id, user) => {
+      socket.leave(id)
+      console.log('left', id)
+    })
+  })
+  
+  
+
+
 
 server.listen(port, () => {
   console.log(`Listening on ${port}`);
