@@ -11,11 +11,8 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    //   fullName: { type: String, required: true },
-    
-  //   chatlog: [{ type: mongoose.Schema.Types.ObjectId, ref: "Message" }],
-   },
-  { timestamps: true } //created at, updated at
+  },
+  { timestamps: true }
 );
 
 userSchema.set("toJSON", {

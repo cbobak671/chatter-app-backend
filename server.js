@@ -31,7 +31,6 @@ mongoose.connection.on("connected", () => {
 app.use(cors());
 app.use(express.json());
 
-// Routes go here
 app.use("/test-jwt", testJWTRouter);
 app.use("/users", usersRouter);
 app.use("/profiles", profilesRouter);
@@ -39,30 +38,23 @@ app.use("/messages", messagesRouter);
 app.use("/chatlogs", chatlogsRouter);
 
 io.on("connection", (socket) => {
-  socket.on('join', (id, user) => {
-    console.log( id, user, 'joined')
+  socket.on("join", (id, user) => {
+    console.log(id, user, "joined");
 
-    socket.join(id)
+    socket.join(id);
   });
 
-    socket.on("message", (messagecontent, currentRoom) => {
-      console.log(messagecontent);
-      console.log(currentRoom)
-      socket.to(currentRoom).emit('message', messagecontent)
-      
-      
-    });
+  socket.on("message", (messagecontent, currentRoom) => {
+    console.log(messagecontent);
+    console.log(currentRoom);
+    socket.to(currentRoom).emit("message", messagecontent);
+  });
 
-
-    socket.on('leave', (id, user) => {
-      socket.leave(id)
-      console.log('left', id)
-    })
-  })
-  
-  
-
-
+  socket.on("leave", (id, user) => {
+    socket.leave(id);
+    console.log("left", id);
+  });
+});
 
 server.listen(port, () => {
   console.log(`Listening on ${port}`);
