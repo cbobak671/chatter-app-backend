@@ -43,7 +43,6 @@ router.get("/user/:userId", async (req, res) => {
 });
 
 router.post("/new", async (req, res) => {
-  console.log("request", req.body);
   try {
     const chatlog = await Chatlog.create(req.body);
 
@@ -58,8 +57,6 @@ router.put("/:chatId", async (req, res) => {
     const chatlog = await Chatlog.findById(req.params.chatId);
     chatlog.messages.push(req.body.messageId);
     await chatlog.save();
-    console.log('updating')
-    
 
     res.status(200).json(chatlog);
   } catch (error) {
